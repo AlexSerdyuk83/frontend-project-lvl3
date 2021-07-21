@@ -14,27 +14,27 @@ module.exports = {
       // {
       //   test: /\.s[ac]ss$/i,
       //   use: [{
-      //     loader: 'style-loader'
+      //     loader: 'style-loader',
       //   }, {
-      //     loader: 'css-loader'
+      //     loader: 'css-loader',
       //   }, {
       //     loader: 'postcss-loader',
       //     options: {
       //       postcssOptions: {
-      //         plugins: function () {
+      //         plugins: () => {
       //           return [
-      //             require('autoprefixer')
+      //             require('autoprefixer'),
       //           ];
-      //         }
-      //       }
-      //     }
+      //         },
+      //       },
+      //     },
       //   }, {
-      //     loader: 'sass-loader'
-      //   }]
-      // }
+      //     loader: 'sass-loader',
+      //   }],
+      // },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
