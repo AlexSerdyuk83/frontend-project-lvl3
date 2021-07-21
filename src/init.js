@@ -1,9 +1,8 @@
 // @ts-check
 
-import Example from './Example.js';
-
-export default () => {
-  const element = document.getElementById('point');
-  const obj = new Example(element);
-  obj.init();
-};
+// export default () => {
+//   const element = document.getElementById('point');
+//   element.classList.add('hello');
+//   element.textContent = 'Hello, World';
+//   return element;
+// };

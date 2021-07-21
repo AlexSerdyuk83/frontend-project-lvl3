@@ -26,6 +26,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
     "debug": "^4.3.1",
     "eslint": "^7.23.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -35,8 +36,18 @@
     "html-webpack-plugin": "^5.3.1",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
-    "webpack": "^5.31.0",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.1.0",
+    "webpack": "^5.45.1",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "autoprefixer": "^10.3.1",
+    "bootstrap": "^5.0.2"
   }
 }

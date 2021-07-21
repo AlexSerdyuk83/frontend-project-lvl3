@@ -11,11 +11,37 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [{
+      //     loader: 'style-loader'
+      //   }, {
+      //     loader: 'css-loader'
+      //   }, {
+      //     loader: 'postcss-loader',
+      //     options: {
+      //       postcssOptions: {
+      //         plugins: function () {
+      //           return [
+      //             require('autoprefixer')
+      //           ];
+      //         }
+      //       }
+      //     }
+      //   }, {
+      //     loader: 'sass-loader'
+      //   }]
+      // }
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'template.html',
+      title: 'RSS aggregator',
+      template: 'index.html',
     }),
   ],
 };
