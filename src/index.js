@@ -4,5 +4,5 @@
 // import './style.scss';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-rtl/dist/css/bootstrap-rtl.css';
+import 'bootstrap/dist/css/bootstrap.rtl.css';
 // import './style.scss';
