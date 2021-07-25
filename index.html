@@ -3,7 +3,7 @@
   <head>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
   <main class="flex-grow-1">
     <section class="container-fluid bg-dark p-5">
       <div class="row">
@@ -23,9 +23,26 @@
             </div>
           </div>
         </form>
+          <p class="mt-2 mb-0 text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
         </div>
       </div>
     </section>
+    <section class="container-fluid container-fluid p-5">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 order-1 mx-auto posts">
+
+        </div>
+        <div class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds">
+
+        </div></div>
+    </section>
   </main>
+  <footer class="footer border-top py-3 mt-5 bg-light">
+    <div class="container-xl">
+      <div class="text-center">created by
+        <a href="https://ru.hexlet.io/professions/frontend/projects/11" target="_blank">Hexlet</a>
+      </div>
+    </div>
+  </footer>
   </body>
 </html>
