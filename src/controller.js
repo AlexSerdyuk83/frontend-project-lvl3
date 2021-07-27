@@ -1,6 +1,7 @@
 import axios from 'axios';
 import isEmpty from 'lodash/isEmpty.js';
 import validate from './validate';
+import parser from './parser';
 
 const getUrl = (fields) => {
   const formData = new FormData(fields);
@@ -12,8 +13,11 @@ export default () => {
     inputUrl: {},
     error: '',
     isValid: false,
-    fids: [
-      // {title: '', description: '', posts: []},
+    feeds: [
+      // {id: '', title: '', description: ''},
+    ],
+    posts: [
+      // {id: '', title: '', description: '', link: ''},
     ],
   };
 
@@ -26,12 +30,17 @@ export default () => {
     const validationResult = validate(state.inputUrl);
 
     if (isEmpty(validationResult)) {
+      form.reset();
+
       state.isValid = true;
-      axios.get(`https://hexlet-allorigins.herokuapp.com/get?disableCache=true&url=${encodeURIComponent(state.inputUrl.url)}`)
+      const url = `https://hexlet-allorigins.herokuapp.com/get?disableCache=true&url=${encodeURIComponent(state.inputUrl.url)}`;
+
+      axios.get(url)
         .then((response) => {
-          const parser = new DOMParser();
-          const fids = parser.parseFromString(response.data.contents, 'text/xml');
-          console.log(fids);
+          const { feedData, posts } = parser(response.data.contents);
+
+          state.feeds.push(feedData);
+          posts.forEach((post) => state.posts.push(post));
         })
         .catch(() => console.log('Network response was not ok.'));
     } else {
