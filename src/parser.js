@@ -5,7 +5,7 @@ const getContent = (doc, tag) => doc.querySelector(tag).textContent;
 export default (content) => {
   const result = {
     feedData: '',
-    posts: [],
+    postsData: [],
   };
 
   const parser = new DOMParser();
@@ -21,7 +21,7 @@ export default (content) => {
     const postTitle = getContent(post, 'title');
     const postDescription = getContent(post, 'description');
     const postLink = getContent(post, 'link');
-    result.posts.push(
+    result.postsData.push(
       {
         id: feedId,
         title: postTitle,
