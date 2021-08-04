@@ -1,17 +1,5 @@
 import onChange from 'on-change';
-
-export const view = {
-  inputUrl: '',
-  validUrls: [],
-  error: '',
-  isValid: false,
-  feeds: [
-    // {id: '', title: '', description: ''},
-  ],
-  posts: [
-    // {id: '', title: '', description: '', link: ''},
-  ],
-};
+import state from './state';
 
 const containerBuilder = (title, list) => `
   <div class="card border-0">
@@ -33,14 +21,48 @@ const liElemContentBuilder = (title, description) => `
       <p class="m-0 small text-black-50">${description}</p>
 `;
 
+/* eslint no-param-reassign: "error" */
+const getFeedback = (element, input, message) => {
+  switch (message) {
+    case 'default':
+      element.innerHTML = '';
+      break;
+    case 'succeed':
+      element.innerHTML = 'RSS успешно загружен';
+      element.classList.remove('text-danger');
+      element.classList.add('text-success');
+      input.classList.remove('is-invalid');
+      break;
+    case 'exists':
+      element.innerHTML = 'RSS уже существует';
+      element.classList.add('text-danger');
+      input.classList.add('is-invalid');
+      break;
+    case 'invalid':
+      element.innerHTML = 'Введите валидный RSS';
+      element.classList.add('text-danger');
+      input.classList.toggle('is-invalid');
+      break;
+    case 'error':
+      element.innerHTML = 'Ошибка сети';
+      element.classList.add('text-danger');
+      input.classList.toggle('is-invalid');
+      break;
+    default:
+      break;
+  }
+};
+
 const feeds = document.querySelector('.feeds');
 const posts = document.querySelector('.posts');
+const input = document.querySelector('input');
+const feedbackElem = document.querySelector('.feedback');
 
-export const watchedState = onChange(view, (path) => {
+const watchedState = onChange(state, (path) => {
   if (path === 'feeds') {
     const feedsList = ulElemBuilder();
 
-    view.feeds.forEach((feed) => {
+    state.feeds.forEach((feed) => {
       const feedItem = document.createElement('li');
       feedItem.classList.add('list-group-item', 'border-0', 'border-end-0');
 
@@ -54,7 +76,7 @@ export const watchedState = onChange(view, (path) => {
   if (path === 'posts') {
     const postsList = ulElemBuilder();
 
-    view.posts.forEach((post) => {
+    state.posts.forEach((post) => {
       const postItem = document.createElement('li');
       postItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
 
@@ -68,8 +90,9 @@ export const watchedState = onChange(view, (path) => {
     posts.innerHTML = containerBuilder('Посты', postsList.innerHTML);
   }
 
-  if (path === 'error') {
-    const input = document.querySelector('input');
-    input.classList.add('is-invalid');
+  if (path === 'isValid') {
+    getFeedback(feedbackElem, input, state.isValid);
   }
 });
+
+export default watchedState;
